@@ -32,12 +32,14 @@ def extract_job(html):
     # else :
     #     print(company.string)
 
-    company_anchor = company.find('a')
-
-    if company_anchor is not None:
-        company = str(company_anchor.string).strip()
+    if company:
+        company_anchor = company.find('a')
+        if company_anchor is not None:
+            company = str(company_anchor.string).strip()
+        else:
+            company = str(company.string).strip()
     else:
-        company = str(company.string).strip()
+        company = None
 
     # string로 긁어올때 display가 none인 것들이 있지만, data-rc-loc 속성에 주소가 존재한다.
     location = html.find('div', {'class': 'recJobLoc'})['data-rc-loc']
